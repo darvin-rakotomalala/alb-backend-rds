@@ -1,0 +1,67 @@
+spring:
+  application:
+    name: spring-boot-app-crud
+
+  jpa:
+    properties:
+      hibernate:
+        # Note: You can remove dialect in Spring Boot 3+ / Hibernate 6+
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          lob:
+            non_contextual_creation: 'true'
+          batch_size: '50'
+    hibernate:
+      ddl-auto: 'update'
+
+  datasource:
+    driver-class-name: com.amazonaws.secretsmanager.sql.AWSSecretsManagerPostgreSQLDriver
+    url: jdbc-secretsmanager:postgresql://ce-dev-rds-postgres.conyo2aki51n.us-east-1.rds.amazonaws.com:5432/springbootcrud
+    username: ce-dev/rds/dbcrud-credentials
+
+  main:
+    lazy-initialization: 'true'
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+    throw-exception-if-no-handler-found: 'true'
+
+  resources:
+    add-mappings: 'false'
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+cors:
+  allowed:
+    origins: '*'
+
+application:
+  description: '@project.description@'
+  name: '@project.artifactId@'
+
+build:
+  timestamp: '@maven.build.timestamp@'
+  version: '@project.version@'
+
+modules:
+  logging:
+    logs:
+      folder:
+        path: ./logs
+    application:
+      name: '@project.artifactId@'
+
+server:
+  port: '8080'
+
+logging:
+  level:
+    org:
+      hibernate:
+        type: TRACE
+        SQL: DEBUG
