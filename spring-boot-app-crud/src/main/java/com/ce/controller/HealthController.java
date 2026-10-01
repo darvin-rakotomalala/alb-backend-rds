@@ -27,9 +27,9 @@ public class HealthController {
 
             response.put("Status", "UP");
             response.put("Message", "Spring Boot AWS CRUD Application is running");
-            response.put("EC2 instance ID: {}", instanceId);
-            response.put("EC2 private IP: {}", privateIp);
-            response.put("Availability zone: {}", az);
+            response.put("EC2 instance ID", instanceId);
+            response.put("EC2 private IP", privateIp);
+            response.put("Availability zone", az);
         } catch (Exception e) {
             log.warn("Not running on EC2 or IMDS unreachable: {}", e.getMessage());
         }
