@@ -17,7 +17,7 @@ resource "aws_iam_role" "terraform_execution" {
       {
         Effect = "Allow"
         Principal = {
-          Federated = aws_iam_openid_connect_provider.github_actions.arn
+          Federated = "arn:aws:iam::${var.current_account_id}:oidc-provider/token.actions.githubusercontent.com"
         }
         Action = "sts:AssumeRoleWithWebIdentity"
         Condition = {
@@ -25,7 +25,7 @@ resource "aws_iam_role" "terraform_execution" {
             "token.actions.githubusercontent.com:aud" = "sts.amazonaws.com"
           }
           StringLike = {
-            "token.actions.githubusercontent.com:sub" = "repo:${var.github_org}/${var.github_repo}:*"
+            "token.actions.githubusercontent.com:sub" = "repo:${var.github_org}*/${var.github_repo}*:*"
           }
         }
       }
@@ -35,14 +35,14 @@ resource "aws_iam_role" "terraform_execution" {
   # Maximum session duration (1 hour for Terraform runs)
   max_session_duration = 3600
 
-  tags = {
+  tags = merge(var.common_tags, {
     Name = "${var.naming_prefix}-ga-oidc"
-  }
+  })
 }
 
 resource "aws_iam_role_policy_attachment" "terraform_execution_admin" {
   role       = aws_iam_role.terraform_execution.name
-  policy_arn = "arn:${var.current_partition}:iam::aws:policy/AdministratorAccess" # TODO: scope down before production use
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
 
 resource "aws_iam_role_policy" "ssm_send_command" {
