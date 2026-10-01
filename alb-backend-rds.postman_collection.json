@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "8eded4d9-ac5d-4615-b581-59afa49ee666",
+		"name": "alb-backend-rds",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13359435"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.cloudwithdarvin.com/health",
+					"protocol": "https",
+					"host": [
+						"api",
+						"cloudwithdarvin",
+						"com"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Note",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"content\": \"Spring Boot and AWS integration\",\n  \"title\": \"Become Cloud Engineer\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.cloudwithdarvin.com/notes",
+					"protocol": "https",
+					"host": [
+						"api",
+						"cloudwithdarvin",
+						"com"
+					],
+					"path": [
+						"notes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create multi Note",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/notes/save-all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"notes",
+						"save-all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get and filter Note",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.cloudwithdarvin.com/notes",
+					"protocol": "https",
+					"host": [
+						"api",
+						"cloudwithdarvin",
+						"com"
+					],
+					"path": [
+						"notes"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "note",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Note by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.cloudwithdarvin.com/notes/3",
+					"protocol": "https",
+					"host": [
+						"api",
+						"cloudwithdarvin",
+						"com"
+					],
+					"path": [
+						"notes",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Note",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"content\": \"Spring Boot and AWS integration\",\n  \"id\": 5,\n  \"title\": \"Cloud with Darvin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.cloudwithdarvin.com/notes",
+					"protocol": "https",
+					"host": [
+						"api",
+						"cloudwithdarvin",
+						"com"
+					],
+					"path": [
+						"notes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Note",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.cloudwithdarvin.com/notes/5",
+					"protocol": "https",
+					"host": [
+						"api",
+						"cloudwithdarvin",
+						"com"
+					],
+					"path": [
+						"notes",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
